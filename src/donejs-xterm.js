@@ -18,7 +18,8 @@ export default Component.extend({
 	events: {
 		inserted(el) {
       if(System.isPlatform("window")) {
-        this.console.open(el.childNodes[0]);
+        var vm = this.viewModel;
+        vm.console.open(el.childNodes[0]);
       }
 		}
 	}
