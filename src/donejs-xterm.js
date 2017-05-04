@@ -5,18 +5,20 @@ import Terminal from 'xterm';
 import 'xterm/dist/xterm.css';
 
 export const Xterm = DefineMap.extend({
-  console: 'object'
+  console: {
+    type: 'object',
+    value: new Terminal()
+  }
 });
 
 export default Component.extend({
   tag: 'donejs-xterm',
-  Xterm,
+  ViewModel: Xterm,
   view,
 	events: {
 		inserted(el) {
       if(System.isPlatform("window")) {
         var vm = this.viewModel;
-        vm.console = new Terminal();
         vm.console.open(el.childNodes[0]);
       }
 		}

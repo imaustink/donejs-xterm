@@ -1,10 +1,10 @@
 import QUnit from 'steal-qunit';
-import { ViewModel } from './donejs-xterm';
+import { Xterm } from './donejs-xterm';
 
 QUnit.module('donejs-xterm');
 
 QUnit.test('Has message', function(){
-  var vm = new ViewModel();
+  var vm = new Xterm();
   
   QUnit.equal(typeof vm.console, 'object');
   QUnit.equal(typeof vm.console.write, 'function');
