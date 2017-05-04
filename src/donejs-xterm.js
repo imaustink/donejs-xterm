@@ -22,7 +22,7 @@ export default Component.extend({
       if(System.isPlatform("window")) {
         var vm = this.viewModel;
         var api = vm.api;
-        api.open(el.childNodes[0]);
+        api.open(el.childNodes[0], false);
         
         api.prompt = function () {
           api.write('\r\n' + prompt);
