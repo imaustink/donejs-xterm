@@ -5,7 +5,7 @@ import Terminal from 'xterm';
 import 'xterm/dist/xterm.css';
 
 export const Xterm = DefineMap.extend({
-  console: {
+  api: {
     type: 'object',
     value: new Terminal()
   }
@@ -19,7 +19,7 @@ export default Component.extend({
 		inserted(el) {
       if(System.isPlatform("window")) {
         var vm = this.viewModel;
-        vm.console.open(el.childNodes[0]);
+        vm.api.open(el.childNodes[0]);
       }
 		}
 	}
