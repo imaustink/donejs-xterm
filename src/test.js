@@ -1,0 +1,1 @@
+import './donejs-xterm-test';

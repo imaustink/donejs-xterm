@@ -1,0 +1,9 @@
+{
+  "generator-donejs": {
+    "promptValues": {
+      "authorName": "Austin Kurpuis",
+      "authorEmail": "austin@austinkurpuis.com",
+      "authorUrl": ""
+    }
+  }
+}
