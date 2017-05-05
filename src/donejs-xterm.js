@@ -3,6 +3,7 @@ import DefineMap from 'can-define/map/';
 import view from './donejs-xterm.stache';
 import Terminal from 'xterm';
 import 'xterm/dist/xterm.css';
+import 'xterm/dist/addons/fit/fit.js';
 
 const prompt = 'Cake is a lie $ ';
 
@@ -17,13 +18,14 @@ export default Component.extend({
   tag: 'donejs-xterm',
   ViewModel: Xterm,
   view,
-	events: {
-		inserted(el) {
-      if(System.isPlatform("window")) {
+  events: {
+    inserted(el) {
+      if (System.isPlatform("window")) {
         var vm = this.viewModel;
         var api = vm.api;
+        api.fit();
         api.open(el.childNodes[0], false);
-        
+
         api.prompt = function () {
           api.write('\r\n' + prompt);
         };
@@ -46,6 +48,6 @@ export default Component.extend({
           }
         });
       }
-		}
-	}
+    }
+  }
 });
