@@ -7,9 +7,9 @@ import 'xterm/dist/xterm.css';
 import Terminal from 'xterm/dist/xterm';
 import 'xterm/dist/addons/fit/';
 
-const prompt = 'Cake is a lie $ ';
-
 export const Xterm = DefineMap.extend({
+  fit: 'string',
+  prompt: 'string',
   api: {
     type: '*',
     value: function () {
@@ -28,12 +28,14 @@ export default Component.extend({
         var vm = this.viewModel;
         var api = vm.api;
         api.open(el.childNodes[0], false);
-        api.fit();
+        if (vm.fit) {
+          api.fit();
+        }
 
         api.prompt = function () {
-          api.write('\r\n' + prompt);
+          api.write('\r\n' + vm.prompt);
         };
-        api.write(prompt);
+        api.write(vm.prompt);
 
         api.on('key', function (key, ev) {
           var printable = (
@@ -44,7 +46,7 @@ export default Component.extend({
             api.prompt();
           } else if (ev.keyCode === 8) {
             // Do not delete the prompt
-            if (api.x > prompt.length) {
+            if (api.x > vm.prompt.length) {
               api.write('\b \b');
             }
           } else if (printable) {
