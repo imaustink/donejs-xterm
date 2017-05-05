@@ -10,7 +10,10 @@ import 'xterm/dist/addons/fit/';
 export const Xterm = DefineMap.extend({
   fit: 'string',
   prompt: 'string',
-  api: {
+  doFit: function() {
+    this.terminal.fit();
+  },
+  terminal: {
     type: '*',
     value: function () {
       return new Terminal();
@@ -26,31 +29,33 @@ export default Component.extend({
     inserted(el) {
       if (System.isPlatform("window")) {
         var vm = this.viewModel;
-        var api = vm.api;
-        api.open(el.childNodes[0], false);
+        var terminal = vm.terminal;
+
+        terminal.open(el.childNodes[0], false);
+
         if (vm.fit) {
-          api.fit();
+          vm.doFit();
         }
 
-        api.prompt = function () {
-          api.write('\r\n' + vm.prompt);
+        terminal.prompt = function () {
+          terminal.write('\r\n' + vm.prompt);
         };
-        api.write(vm.prompt);
+        terminal.write(vm.prompt);
 
-        api.on('key', function (key, ev) {
+        terminal.on('key', function (key, ev) {
           var printable = (
             !ev.altKey && !ev.altGraphKey && !ev.ctrlKey && !ev.metaKey
           );
 
           if (ev.keyCode === 13) {
-            api.prompt();
+            terminal.prompt();
           } else if (ev.keyCode === 8) {
             // Do not delete the prompt
-            if (api.x > vm.prompt.length) {
-              api.write('\b \b');
+            if (terminal.x > vm.prompt.length) {
+              terminal.write('\b \b');
             }
           } else if (printable) {
-            api.write(key);
+            terminal.write(key);
           }
         });
       }
