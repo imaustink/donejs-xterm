@@ -51,7 +51,7 @@ export default Component.extend({
           if (ev.keyCode === 13) {
             vm.promptLine = terminal.lines.get(terminal.ybase + terminal.y)
               .slice(vm.prompt.length);
-            terminal.prompt();
+            // terminal.prompt();
           } else if (ev.keyCode === 8) {
             // Do not delete the prompt
             if (terminal.x > vm.prompt.length) {
