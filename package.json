@@ -39,6 +39,13 @@
   "keywords": [
     "donejs-plugin"
   ],
+  "meta": {
+    "xterm/dist/addons/fit/": {
+      "deps": [
+        "xterm"
+      ]
+    }
+  },
   "steal": {
     "main": "donejs-xterm",
     "configDependencies": [

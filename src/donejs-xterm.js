@@ -1,16 +1,20 @@
 import Component from 'can-component';
 import DefineMap from 'can-define/map/';
 import view from './donejs-xterm.stache';
-import Terminal from 'xterm';
+
+import './donejs-xterm.less';
 import 'xterm/dist/xterm.css';
-import 'xterm/dist/addons/fit/fit.js';
+import Terminal from 'xterm/dist/xterm';
+import 'xterm/dist/addons/fit/';
 
 const prompt = 'Cake is a lie $ ';
 
 export const Xterm = DefineMap.extend({
   api: {
-    type: 'object',
-    value: new Terminal()
+    type: '*',
+    value: function () {
+      return new Terminal();
+    }
   }
 });
 
@@ -23,8 +27,8 @@ export default Component.extend({
       if (System.isPlatform("window")) {
         var vm = this.viewModel;
         var api = vm.api;
-        api.fit();
         api.open(el.childNodes[0], false);
+        api.fit();
 
         api.prompt = function () {
           api.write('\r\n' + prompt);
