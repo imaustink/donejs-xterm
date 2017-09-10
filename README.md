@@ -1,5 +1,7 @@
 # donejs-xterm
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/imaustink/donejs-xterm.svg)](https://greenkeeper.io/)
+
 [![Build Status](https://travis-ci.org/imaustink/donejs-xterm.png?branch=master)](https://travis-ci.org/imaustink/donejs-xterm)
 
 DoneJS plugin to wrap Xterm
